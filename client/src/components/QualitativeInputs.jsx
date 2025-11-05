@@ -2,7 +2,7 @@ export default function QualitativeInputs({ inputs, onChange }) {
   const handleSelect = (field, value) => onChange(field, value);
 
   return (
-    <section className="bg-white shadow-lg rounded-xl p-6">
+    <section className="bg-blue-100 shadow-lg rounded-xl p-6">
       <h2 className="text-2xl font-bold text-gray-900 mb-4">Qualitative Parameters</h2>
 
       <div className="grid md:grid-cols-2 gap-6">
@@ -11,7 +11,7 @@ export default function QualitativeInputs({ inputs, onChange }) {
           <select
             value={inputs.waterSource}
             onChange={(e) => handleSelect('waterSource', e.target.value)}
-            className="w-full border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-cyan-500"
+            className="w-full border-gray-500 rounded-lg p-3 focus:ring-2 focus:ring-cyan-500"
           >
             <option value="">Select source</option>
             <option>River</option>

@@ -29,6 +29,7 @@ export default function LandingSection({ onGetStarted }) {
             </div>
             <p className="text-gray-600 mb-4">
               Evaluate observable characteristics that provide immediate insights into potential contamination.
+              These qualitative clues are also part of WHO & EPA field inspection guidelines for initial screening.
             </p>
             <ul className="space-y-3 text-gray-700">
               <li>• <strong>Water Source:</strong> Identifies natural contamination risks.</li>
@@ -47,6 +48,7 @@ export default function LandingSection({ onGetStarted }) {
             </div>
             <p className="text-gray-600 mb-4">
               Measure chemical and biological parameters that define water safety.
+              These values are interpreted following international standards such as WHO Guidelines for Drinking Water Quality and US EPA thresholds.
             </p>
             <ul className="space-y-3 text-gray-700">
               <li>• <strong>pH Level:</strong> Measures acidity.</li>
@@ -55,6 +57,14 @@ export default function LandingSection({ onGetStarted }) {
               <li>• <strong>Nitrate & E. coli:</strong> Runoff and fecal indicators.</li>
             </ul>
           </div>
+        </div>
+
+        {/* NEW Scientific Basis Section */}
+        <div className="bg-white border-l-4 border-cyan-600 rounded-md p-6 mb-12">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Scientific Basis & Thresholds</h3>
+          <p className="text-gray-700">
+            This platform applies evidence-based interpretation using data ranges referenced from WHO (Guidelines for Drinking Water Quality, 2022), US EPA (National Primary Drinking Water Regulations), and peer-reviewed hydrology studies. Each parameter influences the biological, chemical, or ecological condition of water—and the combined profile determines safety for human consumption and agricultural use.
+          </p>
         </div>
 
         <div className="bg-amber-50 border-2 border-amber-200 rounded-xl p-6 mb-12">

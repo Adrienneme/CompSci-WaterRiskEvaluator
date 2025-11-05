@@ -5,7 +5,7 @@ import Navigation from './components/Navigation';
 import QualitativeInputs from './components/QualitativeInputs';
 import QuantitativeInputs from './components/QuantitativeInputs';
 import ResultDisplay from "./components/ResultDisplay.jsx";
-import { evaluateWaterQuality } from './utils/evaluation';
+import { evaluateWaterQuality } from './utils/evaluation'; // api component
 
 export default function App() {
   const [showForm, setShowForm] = useState(false);
@@ -30,9 +30,9 @@ export default function App() {
     setInputs(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const evaluationResults = evaluateWaterQuality(inputs);
+    const evaluationResults = evaluateWaterQuality(inputs); //replace with actual api
     setResults(evaluationResults);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -67,15 +67,10 @@ export default function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-cyan-50">
       <Navigation currentPage="evaluate" onNavigate={page => page === 'home' && setShowForm(false)} />
-      <header className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center gap-3">
-          <Droplet className="w-8 h-8 text-cyan-600" />
-          <h1 className="text-2xl font-bold text-gray-900">Water Quality Evaluation System</h1>
-        </div>
-      </header>
+      
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {results && <ResultsDisplay results={results} onReset={handleReset} />}
+        {results && <ResultDisplay results={results} onReset={handleReset} />}
         <form onSubmit={handleSubmit} className="space-y-6">
           <QualitativeInputs inputs={inputs} onChange={handleInputChange} />
           <QuantitativeInputs inputs={inputs} onChange={handleInputChange} />

@@ -1,20 +1,32 @@
-import { CheckCircle, XCircle } from 'lucide-react';
 
 export default function ResultDisplay({ results, onReset }) {
-  const { overall, details } = results;
+  const { overall, categories } = results;
 
   const color =
     overall === 'Excellent' ? 'emerald' :
     overall === 'Good' ? 'cyan' :
     overall === 'Fair' ? 'amber' : 'red';
 
+  const cardColor = (grade) => {
+    if (grade === "Safe") return "emerald";
+    if (grade === "Risky") return "amber";
+    return "red"; // Unsafe
+  };
+
+  const categoryCards = [
+    { label: "🧑Human Consumption", key: "human" },
+    { label: "🐶Animal Use", key: "animal" },
+    { label: "🌽Irrigation / Agriculture", key: "plant" },
+  ];
+
   return (
     <section className="bg-white shadow-lg rounded-xl p-6 mb-6 border-t-4 border-cyan-500">
       <h2 className="text-2xl font-bold text-gray-900 mb-4">Evaluation Results</h2>
 
-      <div className={`bg-${color}-50 border border-${color}-200 rounded-lg p-6 mb-4`}>
+      {/* Overall */}
+      <div className={`bg-${color}-50 border border-${color}-200 rounded-lg p-6 mb-6`}>
         <h3 className={`text-${color}-800 text-xl font-semibold mb-2`}>
-          Overall Quality: {overall}
+          Overall Water Quality: {overall}
         </h3>
         <p className="text-gray-700">
           {overall === 'Excellent'
@@ -27,18 +39,29 @@ export default function ResultDisplay({ results, onReset }) {
         </p>
       </div>
 
-      <div className="space-y-3">
-        {details.map((d, i) => (
-          <div key={i} className="flex items-center justify-between bg-gray-50 rounded-lg p-3">
-            <div className="flex items-center gap-3">
-              {d.status === 'Pass'
-                ? <CheckCircle className="w-5 h-5 text-emerald-600" />
-                : <XCircle className="w-5 h-5 text-red-600" />}
-              <span className="font-medium text-gray-800">{d.parameter}</span>
+      {/* 3 Category Cards */}
+      <div className="grid md:grid-cols-3 gap-4 mb-6">
+        {categoryCards.map(({ label, key }) => {
+          const grade = categories?.[key] || "Unknown";
+          const col = cardColor(grade);
+
+          return (
+            <div
+              key={key}
+              className={`border border-${col}-200 bg-${col}-50 rounded-lg p-4`}
+            >
+              <h4 className={`text-${col}-800 font-semibold mb-1`}>{label}</h4>
+              <p className="text-gray-700 font-medium">{grade}</p>
+              <p className="text-sm text-gray-600 mt-1">
+                {grade === "Safe"
+                  ? "Generally within acceptable safety limits."
+                  : grade === "Risky"
+                  ? "May require treatment or caution depending on exposure."
+                  : "Unsafe based on current parameters."}
+              </p>
             </div>
-            <span className="text-gray-600">{d.value}</span>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       <div className="text-center mt-6">

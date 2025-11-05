@@ -26,12 +26,24 @@ export default function App() {
     eColi: ''
   });
 
+  const isFormValid =
+    inputs.waterSource &&
+    inputs.color &&
+    inputs.odor &&
+    inputs.landUse &&
+    inputs.recentEvent;
+
+
   const handleInputChange = (field, value) => {
     setInputs(prev => ({ ...prev, [field]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!isFormValid){
+      alert("For accurate evaluation, please complete all required fields first.");
+      return
+    }
     const evaluationResults = evaluateWaterQuality(inputs); //replace with actual api
     setResults(evaluationResults);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -67,7 +79,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-cyan-50">
       <Navigation currentPage="evaluate" onNavigate={page => page === 'home' && setShowForm(false)} />
-      
+
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {results && <ResultDisplay results={results} onReset={handleReset} />}

@@ -20,6 +20,8 @@ export default function LandingSection({ onGetStarted }) {
 
         {/* Cards */}
         <div className="grid md:grid-cols-2 gap-8 mb-16">
+
+          {/* Qualitative */}
           <div className="bg-white rounded-xl shadow-lg p-8">
             <div className="flex items-center gap-3 mb-4">
               <div className="bg-blue-100 p-3 rounded-lg">
@@ -28,17 +30,18 @@ export default function LandingSection({ onGetStarted }) {
               <h2 className="text-2xl font-bold text-gray-900">Qualitative Assessment</h2>
             </div>
             <p className="text-gray-600 mb-4">
-              Evaluate observable characteristics that provide immediate insights into potential contamination.
-              These qualitative clues are also part of WHO & EPA field inspection guidelines for initial screening.
+              These are field-observed characteristics. They do not measure a numeric value, but they are used by WHO & EPA
+              inspectors because visual and contextual indicators strongly correlate to likely contamination type.
             </p>
             <ul className="space-y-3 text-gray-700">
-              <li>• <strong>Water Source:</strong> Identifies natural contamination risks.</li>
-              <li>• <strong>Color & Odor:</strong> Visual and olfactory indicators of pollutants.</li>
-              <li>• <strong>Land Use:</strong> Environment impacts water through runoff.</li>
-              <li>• <strong>Recent Events:</strong> Changes like floods or droughts.</li>
+              <li>• <strong>Water Source:</strong> measures inherent hydrogeologic risk (groundwater vs surface water) and indicates probability of natural vs human contamination.</li>
+              <li>• <strong>Color & Odor:</strong> measures visible/molecular contamination profiles. Unusual color or bad smell usually means organic decay or chemical pollution.</li>
+              <li>• <strong>Land Use:</strong> measures dominant contamination probability based on the landscape (agricultural = nitrate risk, industrial = chemical/metals, residential = domestic waste/sewage).</li>
+              <li>• <strong>Recent Events:</strong> measures increased contamination risk due to disturbance (floods = higher pathogen load, drought = concentrated chemicals).</li>
             </ul>
           </div>
 
+          {/* Quantitative */}
           <div className="bg-white rounded-xl shadow-lg p-8">
             <div className="flex items-center gap-3 mb-4">
               <div className="bg-emerald-100 p-3 rounded-lg">
@@ -47,23 +50,28 @@ export default function LandingSection({ onGetStarted }) {
               <h2 className="text-2xl font-bold text-gray-900">Quantitative Analysis</h2>
             </div>
             <p className="text-gray-600 mb-4">
-              Measure chemical and biological parameters that define water safety.
-              These values are interpreted following international standards such as WHO Guidelines for Drinking Water Quality and US EPA thresholds.
+              These are laboratory / device-based measurements. Each one measures a different dimension of contamination.
+              Combined together, they reveal which pollution pathway is present.
             </p>
             <ul className="space-y-3 text-gray-700">
-              <li>• <strong>pH Level:</strong> Measures acidity.</li>
-              <li>• <strong>BOD & DO:</strong> Indicate organic pollution levels.</li>
-              <li>• <strong>Turbidity:</strong> Cloudiness measure.</li>
-              <li>• <strong>Nitrate & E. coli:</strong> Runoff and fecal indicators.</li>
+              <li>• <strong>pH Level:</strong> measures acidity/alkalinity. Affects solubility of heavy metals and microbial survival.</li>
+              <li>• <strong>BOD:</strong> measures organic load by how much oxygen microbes consume. High BOD = high organic pollution.</li>
+              <li>• <strong>DO:</strong> measures dissolved oxygen availability. Low DO indicates that the water ecosystem is suffocating due to pollution.</li>
+              <li>• <strong>Turbidity:</strong> measures suspended particles. Higher turbidity protects pathogens from disinfection and indicates possible waste or erosion.</li>
+              <li>• <strong>Nitrate:</strong> measures agricultural runoff/sewage presence. Excess nitrate harms infants and crops.</li>
+              <li>• <strong>E. coli:</strong> measures fecal contamination. Direct indicator of pathogen presence → immediately unsafe.</li>
+              <li>• <strong>TDS (mg/L):</strong> measures total dissolved minerals/metals/organics. High TDS indicates chemical imbalance and can affect taste, corrosion, and crop compatibility.</li>
             </ul>
           </div>
         </div>
 
-        {/* NEW Scientific Basis Section */}
+        {/* Scientific Basis */}
         <div className="bg-white border-l-4 border-cyan-600 rounded-md p-6 mb-12">
           <h3 className="text-lg font-semibold text-gray-900 mb-2">Scientific Basis & Thresholds</h3>
           <p className="text-gray-700">
-            This platform applies evidence-based interpretation using data ranges referenced from WHO (Guidelines for Drinking Water Quality, 2022), US EPA (National Primary Drinking Water Regulations), and peer-reviewed hydrology studies. Each parameter influences the biological, chemical, or ecological condition of water—and the combined profile determines safety for human consumption and agricultural use.
+            This platform uses evidence-based interpretation using WHO (2022) and US EPA standards. Each parameter
+            relates to a contamination mechanism. The system looks at patterns — not just individual numbers —
+            to determine risk for humans, animals, and plant irrigation.
           </p>
         </div>
 

@@ -31,13 +31,14 @@ export default function QuantitativeInputs({ inputs, onChange }) {
         <div className="mt-6">
           <div className="grid md:grid-cols-2 gap-6">
             {[
+              { label: 'Temperature', key: 'temperature', unit: '°C' },
               { label: 'pH Level', key: 'ph', unit: '' },
               { label: 'Biochemical Oxygen Demand (BOD)', key: 'bod', unit: 'mg/L' },
               { label: 'Turbidity', key: 'turbidity', unit: 'NTU' },
               { label: 'Dissolved Oxygen (DO)', key: 'dissolvedOxygen', unit: 'mg/L' },
               { label: 'Nitrate', key: 'nitrate', unit: 'mg/L' },
-              { label: 'Temperature', key: 'temperature', unit: '°C' },
-              { label: 'E. coli Count', key: 'eColi', unit: 'CFU/100mL' }
+              { label: 'E. coli Count', key: 'eColi', unit: 'CFU/100mL' },
+              { label: 'Total Dissolved Solids (TDS)', key: 'TDS', unit: 'mg/L' }
             ].map(({ label, key, unit }) => (
               <div key={key}>
                 <label className="block text-gray-700 font-medium mb-2">{label}</label>

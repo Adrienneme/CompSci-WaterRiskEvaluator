@@ -67,8 +67,23 @@ export default function QualitativeInputs({ inputs, onChange }) {
           </select>
         </div>
 
-        <div className="md:col-span-2">
-          <label className="block text-gray-700 font-medium mb-2">Recent Geological/Weather Events</label>
+        <div>
+          <label className="block text-gray-700 font-medium mb-2">Recent Geological Events</label>
+          <select
+            value={inputs.recentEvent}
+            onChange={(e) => handleSelect('recentEvent', e.target.value)}
+            className="w-full border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-cyan-500"
+          >
+            <option>None</option>
+            <option>Flood</option>
+            <option>Heavy Rainfall</option>
+            <option>Drought</option>
+            <option>Landslide</option>
+          </select>
+        </div>
+
+         <div>
+          <label className="block text-gray-700 font-medium mb-2">Recent Weather Events</label>
           <select
             value={inputs.recentEvent}
             onChange={(e) => handleSelect('recentEvent', e.target.value)}

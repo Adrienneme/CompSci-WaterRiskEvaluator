@@ -5,8 +5,6 @@ from ql_dict import ql_to_qn_map
 def getrand(x: float, y:float):
   return random.uniform(x, y)
 
-ql = {"water_source": "tap", "color": "red"}
-
 def convert_ql_to_qn( ql ):
   
   parameter_values = {

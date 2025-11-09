@@ -1,5 +1,7 @@
-from utils import convert_ql_to_qn
-
+from .utils import convert_ql_to_qn
+import pandas as pd
+import os
+import joblib
 
 def water_evaluate(ql, qn):
   qualitative_inputs = convert_ql_to_qn(ql)

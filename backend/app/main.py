@@ -1,10 +1,10 @@
-from fastapi import FastAPI, HTTPException, status
-from schema import inputRequest
-from services import water_evaluate
+from fastapi import FastAPI, HTTPException
+from .schema import inputRequest
+from .services import water_evaluate
 
-router = FastAPI()
+app = FastAPI()
 
-@router.post("/evluate")
+@app.post("/evaluate")
 def water_evaluate_route(inputs: inputRequest):
   ql = inputs.qualitative.model_dump()
   qn = inputs.quantitative.model_dump()

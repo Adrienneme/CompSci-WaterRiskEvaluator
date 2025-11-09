@@ -1,6 +1,7 @@
 import random
 import statistics
-from ql_dict import ql_to_qn_map
+from .ql_dict import ql_to_qn_map
+
 
 def getrand(x: float, y:float):
   return random.uniform(x, y)

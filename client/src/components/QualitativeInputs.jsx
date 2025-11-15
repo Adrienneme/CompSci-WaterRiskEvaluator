@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default function QualitativeInputs({ inputs, onChange }) {
   const handleSelect = (field, value) => onChange(field, value);
 
@@ -9,8 +11,8 @@ export default function QualitativeInputs({ inputs, onChange }) {
         <div>
           <label className="block text-gray-700 font-medium mb-2">Water Source</label>
           <select
-            value={inputs.waterSource}
-            onChange={(e) => handleSelect('waterSource', e.target.value)}
+            value={inputs.water_source}
+            onChange={(e) => handleSelect('water_source', e.target.value)}
             className="w-full border-gray-500 rounded-lg p-3 focus:ring-2 focus:ring-cyan-500"
           >
             <option value="">Select source</option>
@@ -55,8 +57,8 @@ export default function QualitativeInputs({ inputs, onChange }) {
         <div>
           <label className="block text-gray-700 font-medium mb-2">Nearby Land Use</label>
           <select
-            value={inputs.landUse}
-            onChange={(e) => handleSelect('landUse', e.target.value)}
+            value={inputs.nearby_land_use}
+            onChange={(e) => handleSelect('nearby_land_use', e.target.value)}
             className="w-full border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-cyan-500"
           >
             <option value="">Select land use</option>
@@ -70,30 +72,28 @@ export default function QualitativeInputs({ inputs, onChange }) {
         <div>
           <label className="block text-gray-700 font-medium mb-2">Recent Geological Events</label>
           <select
-            value={inputs.recentEvent}
-            onChange={(e) => handleSelect('recentEvent', e.target.value)}
+            value={inputs.geological_event}
+            onChange={(e) => handleSelect('geological_event', e.target.value)}
             className="w-full border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-cyan-500"
           >
             <option>None</option>
             <option>Flood</option>
-            <option>Heavy Rainfall</option>
-            <option>Drought</option>
             <option>Landslide</option>
+            <option>Drought</option>
           </select>
         </div>
 
-         <div>
+        <div>
           <label className="block text-gray-700 font-medium mb-2">Recent Weather Events</label>
           <select
-            value={inputs.recentEvent}
-            onChange={(e) => handleSelect('recentEvent', e.target.value)}
+            value={inputs.weather_event}
+            onChange={(e) => handleSelect('weather_event', e.target.value)}
             className="w-full border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-cyan-500"
           >
             <option>None</option>
-            <option>Flood</option>
             <option>Heavy Rainfall</option>
-            <option>Drought</option>
-            <option>Landslide</option>
+            <option>Heatwave</option>
+            <option>Storm</option>
           </select>
         </div>
       </div>

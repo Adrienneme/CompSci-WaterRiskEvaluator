@@ -28,7 +28,12 @@ export default function App() {
   });
 
   const handleInputChange = (field, value) => {
-    setInputs(prev => ({ ...prev, [field]: value }));
+    setInputs(prev => ({ 
+      ...prev, 
+      [field]: ['temperature', 'pH', 'turbidity', 'bod', 'do', 'nitrate', 'ecoli', 'tds'].includes(field)
+        ? value.replace(/[^0-9.]/g, '') // remove non-numeric chars
+        : value 
+    }));
   };
 
   const isFormValid =
@@ -45,7 +50,20 @@ export default function App() {
     }
 
     try {
-      const evaluationResults = await evaluateWaterQuality(inputs);
+      // Convert empty numeric fields to default values
+      const numericInputs = {
+        ...inputs,
+        temperature: inputs.temperature || '25',
+        pH: inputs.pH || '7',
+        turbidity: inputs.turbidity || '0',
+        bod: inputs.bod || '0',
+        do: inputs.do || '8',
+        nitrate: inputs.nitrate || '0',
+        ecoli: inputs.ecoli || '0',
+        tds: inputs.tds || '0',
+      };
+
+      const evaluationResults = await evaluateWaterQuality(numericInputs);
       setResults(evaluationResults);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (err) {

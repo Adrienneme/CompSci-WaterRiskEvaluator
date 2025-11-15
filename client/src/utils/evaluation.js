@@ -10,14 +10,14 @@ export async function evaluateWaterQuality(inputs) {
         weather_event: inputs.weather_event || 'None',
       },
       quantitative: {
-        temperature: inputs.temperature ? parseFloat(inputs.temperature) : null,
-        pH: inputs.pH ? parseFloat(inputs.pH) : null,
-        turbidity: inputs.turbidity ? parseFloat(inputs.turbidity) : null,
-        bod: inputs.bod ? parseFloat(inputs.bod) : null,
-        do: inputs.do ? parseFloat(inputs.do) : null,
-        nitrate: inputs.nitrate ? parseFloat(inputs.nitrate) : null,
-        ecoli: inputs.ecoli ? parseInt(inputs.ecoli) : null,
-        tds: inputs.tds ? parseFloat(inputs.tds) : null,
+        temperature: parseFloat(inputs.temperature) || 25, // default 25°C
+        pH: parseFloat(inputs.pH) || 7,                     // neutral pH default
+        turbidity: parseFloat(inputs.turbidity) || 0,
+        bod: parseFloat(inputs.bod) || 0,
+        do: parseFloat(inputs.do) || 8,                     // typical DO mg/L
+        nitrate: parseFloat(inputs.nitrate) || 0,
+        ecoli: parseInt(inputs.ecoli) || 0,
+        tds: parseFloat(inputs.tds) || 0,
       }
     };
 

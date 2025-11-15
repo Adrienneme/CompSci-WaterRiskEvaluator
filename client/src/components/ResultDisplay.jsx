@@ -1,6 +1,5 @@
-
 export default function ResultDisplay({ results, onReset }) {
-  const { overall, categories } = results;
+  const { overall, human, animals, plant } = results; // use actual keys
 
   const color =
     overall === 'Excellent' ? 'emerald' :
@@ -8,15 +7,15 @@ export default function ResultDisplay({ results, onReset }) {
     overall === 'Fair' ? 'amber' : 'red';
 
   const cardColor = (grade) => {
-    if (grade === "Safe") return "emerald";
-    if (grade === "Risky") return "amber";
-    return "red"; // Unsafe
+    if (grade === "safe") return "emerald";
+    if (grade === "risky") return "amber";
+    return "red"; // unsafe
   };
 
   const categoryCards = [
-    { label: "🧑Human Consumption", key: "human" },
-    { label: "🐶Animal Use", key: "animal" },
-    { label: "🌽Irrigation / Agriculture", key: "plant" },
+    { label: "🧑Human Consumption", value: human },
+    { label: "🐶Animal Use", value: animals },
+    { label: "🌽Irrigation / Agriculture", value: plant },
   ];
 
   return (
@@ -41,21 +40,21 @@ export default function ResultDisplay({ results, onReset }) {
 
       {/* 3 Category Cards */}
       <div className="grid md:grid-cols-3 gap-4 mb-6">
-        {categoryCards.map(({ label, key }) => {
-          const grade = categories?.[key] || "Unknown";
+        {categoryCards.map(({ label, value }) => {
+          const grade = value || "Unknown";
           const col = cardColor(grade);
 
           return (
             <div
-              key={key}
+              key={label}
               className={`border border-${col}-200 bg-${col}-50 rounded-lg p-4`}
             >
               <h4 className={`text-${col}-800 font-semibold mb-1`}>{label}</h4>
               <p className="text-gray-700 font-medium">{grade}</p>
               <p className="text-sm text-gray-600 mt-1">
-                {grade === "Safe"
+                {grade === "safe"
                   ? "Generally within acceptable safety limits."
-                  : grade === "Risky"
+                  : grade === "risky"
                   ? "May require treatment or caution depending on exposure."
                   : "Unsafe based on current parameters."}
               </p>

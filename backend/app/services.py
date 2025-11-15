@@ -1,7 +1,8 @@
 import pandas as pd
 import joblib
 import os
-from .utils import convert_ql_to_qn
+import random
+from .ql_dict import ql_to_qn_map  # your original ql_dict.py
 
 # ---- Load models at startup ----
 MODEL_DIR = os.path.join(os.path.dirname(__file__), "models")
@@ -21,37 +22,47 @@ FEATURE_COLUMNS = [
     "Ecoli_CFU_per_100mL",
     "TDS_mg_L"
 ]
+
+def convert_ql_to_qn(ql: dict):
+    """
+    Convert qualitative inputs to quantitative numeric values using ql_dict.py.
+    Picks random values within the ranges defined in ql_to_qn_map.
+    """
+    final_qn = {}
+    for key, value in ql.items():
+        if not value:
+            continue
+        numeric_ranges = ql_to_qn_map(value)
+        for param, rng in numeric_ranges.items():
+            final_qn[param.lower()] = round(random.uniform(rng[0], rng[1]), 2)
+    return final_qn
+
 def water_evaluate(ql, qn):
     """
     Evaluate water quality using qualitative (ql) and quantitative (qn) inputs.
-    - Converts qualitative inputs to quantitative using random values within mapped ranges.
-    - Quantitative inputs override qualitative values.
+    Returns dictionary with human, animals, plant, overall.
     """
-    # Convert qualitative to quantitative
     qualitative_inputs = convert_ql_to_qn(ql)
 
-    # Merge user-provided quantitative values (override)
+    # Merge quantitative & qualitative inputs
     final_inputs = {}
-    for param in FEATURE_COLUMNS:
-        qn_key_map = {
-            "pH": "pH",
-            "Turbidity_NTU": "turbidity",
-            "BOD_mg_L": "bod",
-            "DO_mg_L": "do",
-            "Nitrate_mg_L": "nitrate",
-            "Temperature_C": "temperature",
-            "Ecoli_CFU_per_100mL": "ecoli",
-            "TDS_mg_L": "tds"
-        }
+    qn_key_map = {
+        "pH": "pH",
+        "Turbidity_NTU": "turbidity",
+        "BOD_mg_L": "bod",
+        "DO_mg_L": "do",
+        "Nitrate_mg_L": "nitrate",
+        "Temperature_C": "temperature",
+        "Ecoli_CFU_per_100mL": "ecoli",
+        "TDS_mg_L": "tds"
+    }
 
+    for param in FEATURE_COLUMNS:
         key = qn_key_map[param]
-        value = qn.get(key, None)  # user input
-        if value is None:
-            # Use qualitative input value (already numeric), optionally add small random noise
-            value = qualitative_inputs.get(key, None)
+        value = qn.get(key) or qualitative_inputs.get(key) or 0
         final_inputs[param] = value
 
-    # Prepare DataFrame for model
+    # Prepare DataFrame
     input_df = pd.DataFrame([final_inputs], columns=FEATURE_COLUMNS)
 
     # Predict
@@ -66,3 +77,5 @@ def water_evaluate(ql, qn):
         decoded_pred[col] = label_encoders[col].inverse_transform([pred[i]])[0]
 
     return decoded_pred
+
+

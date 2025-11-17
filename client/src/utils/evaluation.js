@@ -1,23 +1,29 @@
 export async function evaluateWaterQuality(inputs) {
   try {
+    const toFloatOrNull = (v) =>
+      v === "" || v === null || v === undefined ? null : parseFloat(v);
+
+    const toIntOrNull = (v) =>
+      v === "" || v === null || v === undefined ? null : parseInt(v, 10);
+
     const payload = {
       qualitative: {
-        water_source: inputs.water_source || 'None',
-        color: inputs.color || 'None',
-        odor: inputs.odor || 'None',
-        nearby_land_use: inputs.nearby_land_use || 'None',
-        geological_event: inputs.geological_event || 'None',
-        weather_event: inputs.weather_event || 'None',
+        water_source: inputs.water_source || null,
+        color: inputs.color || null,
+        odor: inputs.odor || null,
+        nearby_land_use: inputs.nearby_land_use || null,
+        geological_event: inputs.geological_event || "None",
+        weather_event: inputs.weather_event || "None",
       },
       quantitative: {
-        temperature: parseFloat(inputs.temperature) || 25, // default 25°C
-        pH: parseFloat(inputs.pH) || 7,                     // neutral pH default
-        turbidity: parseFloat(inputs.turbidity) || 0,
-        bod: parseFloat(inputs.bod) || 0,
-        do: parseFloat(inputs.do) || 8,                     // typical DO mg/L
-        nitrate: parseFloat(inputs.nitrate) || 0,
-        ecoli: parseInt(inputs.ecoli) || 0,
-        tds: parseFloat(inputs.tds) || 0,
+        temperature: toFloatOrNull(inputs.temperature),
+        pH: toFloatOrNull(inputs.pH),
+        turbidity: toFloatOrNull(inputs.turbidity),
+        bod: toFloatOrNull(inputs.bod),
+        do: toFloatOrNull(inputs.do),
+        nitrate: toFloatOrNull(inputs.nitrate),
+        ecoli: toIntOrNull(inputs.ecoli),
+        tds: toFloatOrNull(inputs.tds),
       }
     };
 

@@ -2,7 +2,7 @@ import pandas as pd
 import joblib
 import os
 import random
-from .ql_dict import ql_to_qn_map  # your original ql_dict.py
+from .ql_dict import ql_to_qn_map  
 
 # ---- Load models at startup ----
 MODEL_DIR = os.path.join(os.path.dirname(__file__), "models")
@@ -23,6 +23,7 @@ FEATURE_COLUMNS = [
     "TDS_mg_L"
 ]
 
+
 def convert_ql_to_qn(ql: dict):
     """
     Convert qualitative inputs to quantitative numeric values using ql_dict.py.
@@ -37,12 +38,24 @@ def convert_ql_to_qn(ql: dict):
             final_qn[param.lower()] = round(random.uniform(rng[0], rng[1]), 2)
     return final_qn
 
+
 def water_evaluate(ql, qn):
     """
     Evaluate water quality using qualitative (ql) and quantitative (qn) inputs.
     Returns dictionary with human, animals, plant, overall.
     """
+
+    # Convert QL → numeric
     qualitative_inputs = convert_ql_to_qn(ql)
+
+    # ----- DEBUG OUTPUT -----
+  
+    print("Quantitative")
+    print(qn)
+
+    print("\nQualitative ")
+    print(qualitative_inputs)
+  
 
     # Merge quantitative & qualitative inputs
     final_inputs = {}
@@ -59,8 +72,20 @@ def water_evaluate(ql, qn):
 
     for param in FEATURE_COLUMNS:
         key = qn_key_map[param]
-        value = qn.get(key) or qualitative_inputs.get(key) or 0
+
+        # If quantitative exists (even 0), use it
+        if key in qn and qn[key] is not None:
+            value = qn[key]
+        else:
+            # If not provided, fallback to qualitative conversion
+            value = qualitative_inputs.get(key, 0)
+
         final_inputs[param] = value
+
+    # DEBUG FINAL INPUTS 
+    print("\nFinal Inputs")
+    print(final_inputs)
+
 
     # Prepare DataFrame
     input_df = pd.DataFrame([final_inputs], columns=FEATURE_COLUMNS)
@@ -77,5 +102,3 @@ def water_evaluate(ql, qn):
         decoded_pred[col] = label_encoders[col].inverse_transform([pred[i]])[0]
 
     return decoded_pred
-
-

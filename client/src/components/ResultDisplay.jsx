@@ -2,9 +2,9 @@ export default function ResultDisplay({ results, onReset }) {
   const { overall, human, animals, plant } = results; // use actual keys
 
   const color =
-    overall === 'Excellent' ? 'emerald' :
-    overall === 'Good' ? 'cyan' :
-    overall === 'Fair' ? 'amber' : 'red';
+    overall === 'safe' ? 'emerald' :
+    overall === 'risky' ? 'amber' :
+    overall === 'unsafe' ? 'red' : 'red';
 
   const cardColor = (grade) => {
     if (grade === "safe") return "emerald";
@@ -28,11 +28,11 @@ export default function ResultDisplay({ results, onReset }) {
           Overall Water Quality: {overall}
         </h3>
         <p className="text-gray-700">
-          {overall === 'Excellent'
+          {overall === 'safe'
             ? 'Water quality is ideal for drinking and all uses.'
-            : overall === 'Good'
+            : overall === 'risky'
             ? 'Water is safe but should be monitored occasionally.'
-            : overall === 'Fair'
+            : overall === 'unsafe'
             ? 'Water may need treatment before drinking.'
             : 'Water quality is poor and unsafe for consumption.'}
         </p>

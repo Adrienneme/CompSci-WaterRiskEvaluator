@@ -16,14 +16,20 @@ export default function QualitativeInputs({ inputs, onChange }) {
             onChange={(e) => handleSelect('water_source', e.target.value)}
             className="w-full border-gray-500 rounded-lg p-3 focus:ring-2 focus:ring-cyan-500"
           >
+            
             <option value="">Select source</option>
-            <option value="River">River</option>
-            <option value="LakePond">Lake/Pond</option>
-            <option value="ShallowWell">Shallow Well</option>
-            <option value="Tap">Tap</option>
-            <option value="RainWater">Rainwater</option>
-            <option value="ReservoirDam">Reservoir/Dam</option>
-            <option value="UndergroundAquifer">Underground Aquifer</option>
+            <option value="tap">Tap Water (faucet)</option>
+            <option value="deepwell">Deep Well</option>
+           <option value="shallowwell">Shallow Well</option>
+            <option value="river">River</option>
+            <option value="lakepond">Lake/Pond</option>
+            <option value="reservoirdam">Reservoir/Dam</option>
+            <option value="rainwater">Rainwater</option>
+             <option value="mountainspring">Mountain Spring</option>
+            <option value="undergroundaquifer">Underground Aquifer</option>
+             <option value="coastalwell">Coastal Well</option>
+              <option value="irrigationcanal">Irrigation Canal</option>
+
           </select>
         </div>
 
@@ -36,13 +42,14 @@ export default function QualitativeInputs({ inputs, onChange }) {
             className="w-full border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-cyan-500"
           >
             <option value="">Select color</option>
-            <option value="Clear">Clear</option>
-            <option value="SlightlyCloudy">Slightly Cloudy</option>
-            <option value="BrownMuddy">Brown/Muddy</option>
-            <option value="GreenAlgal">Green/Algal</option>
-            <option value="Yellowish">Yellowish</option>
-            <option value="BlackGrey">Black/Grey</option>
-            <option value="OilySheen">Oily Sheen</option>
+            <option value="clear">Clear</option>
+            <option value="slightlycloudy">Slightly Cloudy</option>
+            <option value="brownmuddy">Brown/Muddy</option>
+            <option value="greenalgal">Green/Algal</option>
+          <option value="blackgrey">Black/Grey</option>  
+          <option value="yellowish">Yellowish</option>
+          <option value="reddish">Reddish</option>
+            <option value="oilySheen">Oily Sheen</option>
           </select>
         </div>
 
@@ -55,14 +62,15 @@ export default function QualitativeInputs({ inputs, onChange }) {
             className="w-full border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-cyan-500"
           >
             <option value="">Select odor</option>
-            <option value="None">None</option>
-            <option value="EarthyMusty">Earthy</option>
-            <option value="FishySmell">Fishy</option>
-            <option value="Sewage">Sewage-like</option>
-            <option value="ChemicalSmell">Chemical</option>
-            <option value="SulfurRottenEgg">Sulfur</option>
-            <option value="LandfillLeachate">Landfill Leachate</option>
-            <option value="ChlorineSmell">Chlorine</option>
+            <option value="none">None</option>
+            <option value="earthymusty">Earthy</option>
+            <option value="sulfurrottenegg">Sulfur</option>
+            <option value="chemicals smell">Chemical</option>
+                <option value="sewageodor">Sewage-like</option>
+            <option value="fishy smell">Fishy</option>
+        <option value="chlorine smell">Chlorine</option>
+            <option value="landfillLeachate">Landfill Leachate</option>
+            
           </select>
         </div>
 
@@ -75,13 +83,19 @@ export default function QualitativeInputs({ inputs, onChange }) {
             className="w-full border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-cyan-500"
           >
             <option value="">Select land use</option>
-            <option value="Urban">Urban</option>
-            <option value="Agriculture">Agriculture</option>
-            <option value="ProtectedForest">Protected Forest</option>
-            <option value="LivestockGrazing">Livestock Grazing</option>
-            <option value="MiningSite">Mining Site</option>
-            <option value="Aquaculture">Aquaculture</option>
-            <option value="UrbanResidential">Urban Residential</option>
+               <option value="protectedforest">Protected Forest</option>
+               <option value="agriculture">Agriculture</option>
+                <option value="livestockgrazing">Livestock Grazing</option>
+                <option value="industrialsites">Industrial Sites</option>
+                 <option value="urbanresidential">Urban Residential</option>
+                 <option value="landfill">Land Fill</option>
+                 <option value="miningsite">Mining Site</option>
+                  <option value="aquaculture">Aqua Culture</option>
+         
+           
+            
+            
+           
           </select>
         </div>
 
@@ -93,13 +107,12 @@ export default function QualitativeInputs({ inputs, onChange }) {
             onChange={(e) => handleSelect('geological_event', e.target.value)}
             className="w-full border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-cyan-500"
           >
-            <option value="NoneGeological">None</option>
-            <option value="Earthquake">Earthquake</option>
-            <option value="LandslideErosion">Landslide/Erosion</option>
-            <option value="VolcanicActivity">Volcanic Activity</option>
-            <option value="SoilErosion">Soil Erosion</option>
-            <option value="LandSubsidence">Land Subsidence</option>
-            <option value="Other">Other</option>
+            <option value="nonegeological">None</option>
+             <option value="volcanicactivity">Volcanic Activity</option>
+             <option value="landslideerosion">Landslide/Erosion</option>
+            <option value="earthquake">Earthquake</option>
+            <option value="soilerosion">Soil Erosion</option>
+            <option value="landsubsidence">Land Subsidence</option>
           </select>
         </div>
 
@@ -111,13 +124,12 @@ export default function QualitativeInputs({ inputs, onChange }) {
             onChange={(e) => handleSelect('weather_event', e.target.value)}
             className="w-full border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-cyan-500"
           >
-            <option value="NoneWeather">None</option>
-            <option value="HeavyRainfall">Heavy Rainfall</option>
-            <option value="Typhoon">Typhoon</option>
-            <option value="Heatwave">Heatwave</option>
-            <option value="Drought">Drought</option>
-            <option value="StormSurge">Storm Surge</option>
-            <option value="Other">Other</option>
+            <option value="noneweather">None</option>
+            <option value="heavyrainfall">Heavy Rainfall</option>
+            <option value="drought">Drought</option>
+            <option value="heatwave">Heatwave</option>
+            <option value="typhoon">Typhoon</option>
+            <option value="stormsurge">Storm Surge</option>
           </select>
         </div>
       </div>

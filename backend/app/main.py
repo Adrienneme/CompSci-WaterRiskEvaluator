@@ -6,7 +6,7 @@ from .services import water_evaluate
 app = FastAPI()
 
 # Allow requests from frontend
-origins = ["http://localhost:5173"]
+origins = ["http://localhost:5173","http://localhost:5174" ]
 
 app.add_middleware(
     CORSMiddleware,

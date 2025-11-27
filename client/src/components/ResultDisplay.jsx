@@ -1,62 +1,92 @@
 export default function ResultDisplay({ results, onReset }) {
-  const { overall, human, animals, plant } = results; // use actual keys
+  const { overall, human, animals, plant } = results || {};
 
-  const color =
-    overall === 'safe' ? 'emerald' :
-    overall === 'risky' ? 'amber' :
-    overall === 'unsafe' ? 'red' : 'red';
-
-  const cardColor = (grade) => {
-    if (grade === "safe") return "emerald";
-    if (grade === "risky") return "amber";
-    return "red"; // unsafe
+  const gradeClasses = {
+    safe: {
+      bg: "bg-emerald-50",
+      border: "border-emerald-200",
+      text: "text-emerald-800",
+    },
+    risky: {
+      bg: "bg-amber-50",
+      border: "border-amber-200",
+      text: "text-amber-800",
+    },
+    unsafe: {
+      bg: "bg-red-50",
+      border: "border-red-200",
+      text: "text-red-800",
+    },
+    unknown: {
+      bg: "bg-gray-50",
+      border: "border-gray-200",
+      text: "text-gray-800",
+    },
   };
 
+  const normalizeGrade = (grade) =>
+    grade === "safe" || grade === "risky" || grade === "unsafe"
+      ? grade
+      : "unknown";
+
+  const overallKey = normalizeGrade(overall);
+  const overallCol = gradeClasses[overallKey];
+
   const categoryCards = [
-    { label: "🧑Human Consumption", value: human },
-    { label: "🐶Animal Use", value: animals },
-    { label: "🌽Irrigation / Agriculture", value: plant },
+    { label: "🧑 Human Consumption", value: human },
+    { label: "🐶 Animal Use", value: animals },
+    { label: "🌽 Irrigation / Agriculture", value: plant },
   ];
 
   return (
     <section className="bg-white shadow-lg rounded-xl p-6 mb-6 border-t-4 border-cyan-500">
-      <h2 className="text-2xl font-bold text-gray-900 mb-4">Evaluation Results</h2>
+      <h2 className="text-2xl font-bold text-gray-900 mb-4">
+        Evaluation Results
+      </h2>
 
-      {/* Overall */}
-      <div className={`bg-${color}-50 border border-${color}-200 rounded-lg p-6 mb-6`}>
-        <h3 className={`text-${color}-800 text-xl font-semibold mb-2`}>
-          Overall Water Quality: {overall}
+      {/* Overall Result */}
+      <div
+        className={`${overallCol.bg} ${overallCol.border} rounded-lg p-6 mb-6`}
+      >
+        <h3 className={`${overallCol.text} text-xl font-semibold mb-2`}>
+          Overall Water Quality: {overall || "Unknown"}
         </h3>
+
         <p className="text-gray-700">
-          {overall === 'safe'
-            ? 'Water quality is ideal for drinking and all uses.'
-            : overall === 'risky'
-            ? 'Water is safe but should be monitored occasionally.'
-            : overall === 'unsafe'
-            ? 'Water may need treatment before drinking.'
-            : 'Water quality is poor and unsafe for consumption.'}
+          {overall === "safe"
+            ? "Water quality is ideal for drinking and all uses."
+            : overall === "risky"
+            ? "Water is safe but should be monitored occasionally."
+            : overall === "unsafe"
+            ? "Water may need treatment before drinking."
+            : "Water quality could not be fully determined from the data provided."}
         </p>
       </div>
 
-      {/* 3 Category Cards */}
+      {/* Category Cards */}
       <div className="grid md:grid-cols-3 gap-4 mb-6">
         {categoryCards.map(({ label, value }) => {
-          const grade = value || "Unknown";
-          const col = cardColor(grade);
+          const grade = value || "unknown";
+          const key = normalizeGrade(grade);
+          const col = gradeClasses[key];
 
           return (
             <div
               key={label}
-              className={`border border-${col}-200 bg-${col}-50 rounded-lg p-4`}
+              className={`${col.bg} ${col.border} rounded-lg p-4`}
             >
-              <h4 className={`text-${col}-800 font-semibold mb-1`}>{label}</h4>
-              <p className="text-gray-700 font-medium">{grade}</p>
+              <h4 className={`${col.text} font-semibold mb-1`}>{label}</h4>
+              <p className="text-gray-700 font-medium capitalize">
+                {grade}
+              </p>
               <p className="text-sm text-gray-600 mt-1">
                 {grade === "safe"
                   ? "Generally within acceptable safety limits."
                   : grade === "risky"
                   ? "May require treatment or caution depending on exposure."
-                  : "Unsafe based on current parameters."}
+                  : grade === "unsafe"
+                  ? "Unsafe based on current parameters."
+                  : "No clear assessment available for this category."}
               </p>
             </div>
           );

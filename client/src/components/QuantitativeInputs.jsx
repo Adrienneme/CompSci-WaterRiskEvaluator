@@ -6,14 +6,14 @@ export default function QuantitativeInputs({ inputs, onChange }) {
   const handleChange = (field, value) => onChange(field, value);
 
   const fields = [
-    { label: 'Temperature', key: 'temperature', unit: '°C' },
-    { label: 'pH Level', key: 'pH', unit: '' },
-    { label: 'Biochemical Oxygen Demand (BOD)', key: 'bod', unit: 'mg/L' },
-    { label: 'Turbidity', key: 'turbidity', unit: 'NTU' },
-    { label: 'Dissolved Oxygen (DO)', key: 'do', unit: 'mg/L' },
-    { label: 'Nitrate', key: 'nitrate', unit: 'mg/L' },
-    { label: 'E. coli Count', key: 'ecoli', unit: 'CFU/100mL' },
-    { label: 'Total Dissolved Solids (TDS)', key: 'tds', unit: 'mg/L' }
+    { label: 'Temperature (-5 - 100)', key: 'temperature', unit: '°C' },
+    { label: 'pH Level (0-14)', key: 'pH', unit: '' },
+    { label: 'Biochemical Oxygen Demand (1-10000)', key: 'bod', unit: 'mg/L' },
+    { label: 'Turbidity (0-4000)', key: 'turbidity', unit: 'NTU' },
+    { label: 'Dissolved Oxygen (0-40)', key: 'do', unit: 'mg/L' },
+    { label: 'Nitrate (0-100)', key: 'nitrate', unit: 'mg/L' },
+    { label: 'E. coli Count (0-5000000)', key: 'ecoli', unit: 'CFU/100mL' },
+    { label: 'Total Dissolved Solids (0-100000)', key: 'tds', unit: 'mg/L' }
   ];
 
   return (

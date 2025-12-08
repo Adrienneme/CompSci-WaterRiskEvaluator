@@ -4,6 +4,7 @@ export default function LandingSection({ onGetStarted }) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-cyan-50 to-teal-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        
         <div className="text-center mb-16">
           <div className="flex justify-center mb-6">
             <div className="bg-cyan-600 p-4 rounded-full">
@@ -75,6 +76,7 @@ export default function LandingSection({ onGetStarted }) {
           </p>
         </div>
 
+        {/* Comprehensive Safety */}
         <div className="bg-amber-50 border-2 border-amber-200 rounded-xl p-6 mb-12">
           <div className="flex items-start gap-3">
             <AlertTriangle className="w-6 h-6 text-amber-600 flex-shrink-0 mt-1" />
@@ -87,6 +89,16 @@ export default function LandingSection({ onGetStarted }) {
           </div>
         </div>
 
+        {/* NEW: Project Credits */}
+        <div className="text-center mb-10">
+          <p className="text-gray-700 font-medium">Project by:</p>
+          <p className="text-gray-900 font-semibold">
+            Soberano, Chester<br/>
+            De Guzman, Michaela<br/>
+            Medenilla, Adrienne
+          </p>
+        </div>
+
         <div className="text-center">
           <button
             onClick={onGetStarted}
@@ -95,6 +107,7 @@ export default function LandingSection({ onGetStarted }) {
             Start Water Quality Assessment
           </button>
         </div>
+
       </div>
     </div>
   );

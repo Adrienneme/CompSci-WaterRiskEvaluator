@@ -7,19 +7,21 @@ The goal of this prototype is to transform raw environmental data into actionabl
 
 ---
 
-<div align="center">
-  <img src="assets/ui.gif" width="550px" alt="Demo">
-</div>
-
 ## ⚙️ How It Works
 The evaluator simplifies complex water analysis into a streamlined process through a user-friendly interface:
 
 ### 1. Qualitative Inputs (Descriptive)
+<div align="center">
+  <img src="assets/ui.gif" width="600px" alt="Demo">
+</div>
 Users select observations from pre-defined dropdown menus. These factors are critical for capturing "on-the-ground" data that sensors might miss:
 * **Sensory Factors:** Taste, Smell, and Color.
 * **Environmental Factors:** Geological context (type of terrain) and current Weather conditions.
 
 ### 2. Quantitative Inputs (Numerical)
+<div align="center">
+  <img src="assets/ui2.gif" width="600px" alt="Demo">
+</div>
 Users provide the measured **Water Quality Index** (WQI)—a summarized numerical value (based on parameters like pH, dissolved oxygen, and minerals) that represents the overall health of the water.
 
 ### 3. Smart Assessment & Recommendations

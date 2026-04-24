@@ -17,8 +17,8 @@ The evaluator simplifies complex water analysis into a streamlined process throu
 </div>
 
 Users select observations from pre-defined dropdown menus. These factors are critical for capturing "on-the-ground" data that sensors might miss:
-* **Sensory Factors:** Taste, Smell, and Color.
-* **Environmental Factors:** Geological context (type of terrain) and current Weather conditions.
+* **Sensory Factors:** Water Source, Odor, Color.
+* **Environmental Factors:** Nearby Land Use, Recent Geological/Weather Events.
 
 ### 2. Quantitative Inputs (Numerical)
 

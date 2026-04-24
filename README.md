@@ -7,6 +7,10 @@ The goal of this prototype is to transform raw environmental data into actionabl
 
 ---
 
+<div align="center">
+  <img src="assets/ui.gif" width="550px" alt="Demo">
+</div>
+
 ## ⚙️ How It Works
 The evaluator simplifies complex water analysis into a streamlined process through a user-friendly interface:
 
